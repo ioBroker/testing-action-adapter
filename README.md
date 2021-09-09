@@ -1,6 +1,6 @@
-# iobroker-testing-action-check
+# iobroker-testing-action-adapter
 
-Shared Github Actions for ioBroker testing workflows: Check and lint step
+Shared Github Actions for ioBroker testing workflows: Adapter tests
 
 ## Inputs
 
