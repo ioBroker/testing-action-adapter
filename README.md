@@ -1,4 +1,4 @@
-# iobroker-testing-action-adapter
+# testing-action-adapter
 
 Shared Github Actions for ioBroker testing workflows: Adapter tests
 
@@ -27,7 +27,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - uses: AlCalzone/iobroker-testing-action-adapter@v1
+      - uses: ioBroker/testing-action-adapter@v1
         with:
           node-version: ${{ matrix.node-version }}
           os: ${{ matrix.os }}
