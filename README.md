@@ -4,13 +4,14 @@ Shared Github Actions for ioBroker testing workflows: Adapter tests
 
 ## Inputs
 
-| Input           | Description                                                        | Required? |      Default      |
-| --------------- | ------------------------------------------------------------------ | --------- | :---------------: |
-| `node-version`  | Node.js version to use in tests. Should be LTS.                    | ✔         |         -         |
-| `os`            | The operation system to use                                        | ✔         |         -         |
-| `build`         | Set to `'true'` when the adapter needs a build step before testing | ❌        |     `'false'`     |
-| `build-command` | Overwrite the default build command                                | ❌        | `'npm run build'` |
-| `extra-tests`   | Add an additional command to run before ioBroker's tests           | ❌        |         -         |
+| Input             | Description                                                        | Required? |      Default      |
+| ----------------- | ------------------------------------------------------------------ | --------- | :---------------: |
+| `node-version`    | Node.js version to use in tests. Should be LTS.                    | ✔         |         -         |
+| `install-command` | Overwrite the default install command                              | ❌        |    `'npm ci'`     |
+| `os`              | The operation system to use                                        | ✔         |         -         |
+| `build`           | Set to `'true'` when the adapter needs a build step before testing | ❌        |     `'false'`     |
+| `build-command`   | Overwrite the default build command                                | ❌        | `'npm run build'` |
+| `extra-tests`     | Add an additional command to run before ioBroker's tests           | ❌        |         -         |
 
 ## Usage
 
