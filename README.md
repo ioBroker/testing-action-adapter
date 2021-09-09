@@ -10,6 +10,7 @@ Shared Github Actions for ioBroker testing workflows: Check and lint step
 | `os`            | The operation system to use                                        | ✔         |         -         |
 | `build`         | Set to `'true'` when the adapter needs a build step before testing | ❌        |     `'false'`     |
 | `build-command` | Overwrite the default build command                                | ❌        | `'npm run build'` |
+| `extra-tests`   | Add an additional command to run before ioBroker's tests           | ❌        |         -         |
 
 ## Usage
 

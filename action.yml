@@ -15,6 +15,9 @@ inputs:
   build-command: 
     description: 'Overwrite the default build command'
     default: 'npm run build'
+  extra-tests:
+    description: 'Add an additional command to run before ioBroker's tests'
+    default: 'false'
 
 # Conditional syntax isn't supported, but there are workarounds:
 # https://github.com/actions/runner/issues/834#issuecomment-909921245
@@ -42,6 +45,15 @@ runs:
           ${{ inputs.build-command }}
         else
           echo "Skipping build step..."
+        fi
+
+    - name: Run additional tests
+      shell: bash
+      run: |
+        if [[ "${{ inputs.extra-tests }}" == "false" ]] ; then
+          echo "Skipping build step..."
+        else
+          ${{ inputs.extra-tests }}
         fi
 
     - name: Run unit tests
