@@ -16,7 +16,7 @@ inputs:
     description: 'Overwrite the default build command'
     default: 'npm run build'
   extra-tests:
-    description: 'Add an additional command to run before ioBroker's tests'
+    description: 'Add an additional command to run before the built-in tests'
     default: 'false'
 
 # Conditional syntax isn't supported, but there are workarounds:
