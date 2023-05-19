@@ -9,6 +9,9 @@ inputs:
   install-command:
     description: "Overwrite the default install command"
     default: "npm ci"
+  package-cache:
+    description: "Define which package manager to use for dependency caching. Set to 'false' to disable caching."
+    default: 'npm'
   os:
     description: 'The operation system to use'
     required: true
@@ -35,7 +38,7 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
-        cache: 'npm'
+        cache: ${{ (inputs.package-cache != 'false' && inputs.package-cache != '') && inputs.package-cache || '' }}
 
     - name: Install Dependencies
       shell: bash
