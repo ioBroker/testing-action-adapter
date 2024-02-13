@@ -24,6 +24,9 @@ inputs:
   extra-tests:
     description: 'Add an additional command to run before the built-in tests'
     default: 'false'
+  unit-test-check-pattern:
+    description: 'The pattern to check for existence of the unit test command'
+    default: 'test:unit'
   unit-test-command:
     description: 'Overwrite the default unit test command'
     default: 'npm run test:unit'
@@ -71,7 +74,7 @@ runs:
     - name: Run unit tests
       shell: bash
       run: |
-        if npm run | grep -q "test:unit" ; then
+        if npm run | grep -q "${{ inputs.unit-test-check-pattern }}" ; then
           echo "Unit test script found"
           ${{ inputs.unit-test-command }}
         else
