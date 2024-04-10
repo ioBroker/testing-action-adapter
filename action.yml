@@ -57,7 +57,7 @@ runs:
       shell: bash
       run: |
         if [[ "${{ inputs.extra-tests }}" == "false" ]] ; then
-          echo "Skipping build step..."
+          echo "Skipping extra-tests step..."
         else
           ${{ inputs.extra-tests }}
         fi
