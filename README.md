@@ -13,6 +13,8 @@ Shared Github Actions for ioBroker testing workflows: Adapter tests
 | `build`           | Set to `'true'` when the adapter needs a build step before testing                                                                                                                                   | ❌        |     `'false'`     |
 | `build-command`   | Overwrite the default build command                                                                                                                                                                  | ❌        | `'npm run build'` |
 | `extra-tests`     | Add an additional command to run before ioBroker's tests                                                                                                                                             | ❌        |         -         |
+| `unit-test-command`   | Overwrite the default unit test command                                                                                                                                                                  | ❌        | `'npm run test:unit'` |
+| `integration-test-command`   | Overwrite the default integration test command                                                                                                                                                                  | ❌        | `'npm run test:integration'` |
 
 ## Usage
 

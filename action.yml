@@ -1,6 +1,6 @@
 name: 'ioBroker Testing: Adapter tests'
 author: 'AlCalzone'
-#description: 'Greet someone'
+description: 'Run optional unit tests and adapter integration tests'
 
 inputs:
   node-version:
@@ -18,12 +18,21 @@ inputs:
   build:
     description: 'Set to true when the adapter needs a build step before testing'
     default: 'false'
-  build-command: 
+  build-command:
     description: 'Overwrite the default build command'
     default: 'npm run build'
   extra-tests:
     description: 'Add an additional command to run before the built-in tests'
     default: 'false'
+  unit-test-check-pattern:
+    description: 'The pattern to check for existence of the unit test command'
+    default: 'test:unit'
+  unit-test-command:
+    description: 'Overwrite the default unit test command'
+    default: 'npm run test:unit'
+  integration-test-command:
+    description: 'Overwrite the default integration test command'
+    default: 'npm run test:integration'
 
 # Conditional syntax isn't supported, but there are workarounds:
 # https://github.com/actions/runner/issues/834#issuecomment-909921245
@@ -65,15 +74,15 @@ runs:
     - name: Run unit tests
       shell: bash
       run: |
-        if npm run | grep -q "test:unit" ; then
+        if npm run | grep -q "${{ inputs.unit-test-check-pattern }}" ; then
           echo "Unit test script found"
-          npm run test:unit
+          ${{ inputs.unit-test-command }}
         else
           echo "No unit tests defined, skipping..."
         fi
 
     - name: Run integration tests
       shell: bash
-      run: npm run test:integration
+      run: ${{ inputs.integration-test-command }}
       env:
         DEBUG: 'testing:*'
