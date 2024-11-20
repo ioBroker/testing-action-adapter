@@ -8,7 +8,7 @@ inputs:
     required: true
   install-command:
     description: "Overwrite the default install command"
-    default: "npm ci"
+    default: "npm ci --engine-strict"
   package-cache:
     description: "Define which package manager to use for dependency caching. Set to 'false' to disable caching."
     default: 'npm'
