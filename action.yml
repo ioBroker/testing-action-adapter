@@ -56,7 +56,7 @@ runs:
       shell: bash
       run: |
         if ${{ inputs.engine-strict }}; then
-          npm config set engine-strict = true
+          npm config set engine-strict=true
         else
           echo "Ignoring engines requirements ..."
         fi
