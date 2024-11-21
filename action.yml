@@ -52,7 +52,7 @@ runs:
         node-version: ${{ inputs.node-version }}
         cache: ${{ (inputs.package-cache != 'false' && inputs.package-cache != '') && inputs.package-cache || '' }}
 
-    - name: Install Dependencies
+    - name: Prepare npm
       shell: bash
       run: |
         if ${{ inputs.engines-strict }}; then
@@ -60,6 +60,9 @@ runs:
         else
           echo "Ignoring engines requirements ..."
         fi
+
+    - name: Install Dependencies
+      shell: bash
       run: ${{ inputs.install-command }}
 
     - name: Create a clean build
