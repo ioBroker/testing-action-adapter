@@ -9,6 +9,9 @@ inputs:
   install-command:
     description: "Overwrite the default install command"
     default: "npm ci"
+  engine-strict:
+    description: 'Set to false to ignore engine requirements'
+    default: 'true'
   package-cache:
     description: "Define which package manager to use for dependency caching. Set to 'false' to disable caching."
     default: 'npm'
@@ -51,6 +54,12 @@ runs:
 
     - name: Install Dependencies
       shell: bash
+      run: |
+        if ${{ inputs.engines-strict }}; then
+          npm config set engine-strict = true
+        else
+          echo "Ignoring engines requirements ..."
+        fi
       run: ${{ inputs.install-command }}
 
     - name: Create a clean build
