@@ -52,7 +52,7 @@ runs:
         node-version: ${{ inputs.node-version }}
         cache: ${{ (inputs.package-cache != 'false' && inputs.package-cache != '') && inputs.package-cache || '' }}
 
-    - name: Prepare npm
+    - name: Configure npm
       shell: bash
       run: |
         if ${{ inputs.engine-strict }}; then
