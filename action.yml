@@ -108,3 +108,4 @@ runs:
       with:
         path: ${{ inputs.screenshots-path }}
         retention-days: 3
+        name: artifacts-${{ inputs.node-version }}
