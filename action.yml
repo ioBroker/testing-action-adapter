@@ -11,31 +11,34 @@ inputs:
     default: "npm ci"
   engine-strict:
     description: 'Set to false to ignore engine requirements'
-    default: 'true'
+    default: "true"
   package-cache:
     description: "Define which package manager to use for dependency caching. Set to 'false' to disable caching."
-    default: 'npm'
+    default: "npm"
   os:
-    description: 'The operation system to use'
+    description: "The operation system to use"
     required: true
   build:
-    description: 'Set to true when the adapter needs a build step before testing'
-    default: 'false'
+    description: "Set to true when the adapter needs a build step before testing"
+    default: "false"
   build-command:
-    description: 'Overwrite the default build command'
-    default: 'npm run build'
+    description: "Overwrite the default build command"
+    default: "npm run build"
   extra-tests:
-    description: 'Add an additional command to run before the built-in tests'
-    default: 'false'
+    description: "Add an additional command to run before the built-in tests"
+    default: "false"
   unit-test-check-pattern:
-    description: 'The pattern to check for existence of the unit test command'
-    default: 'test:unit'
+    description: "The pattern to check for existence of the unit test command"
+    default: "test:unit"
   unit-test-command:
-    description: 'Overwrite the default unit test command'
-    default: 'npm run test:unit'
+    description: "Overwrite the default unit test command"
+    default: "npm run test:unit"
   integration-test-command:
-    description: 'Overwrite the default integration test command'
-    default: 'npm run test:integration'
+    description: "Overwrite the default integration test command"
+    default: "npm run test:integration"
+  screenshots-path:
+    description: "Optional path to screenshots that must be saved as archive"
+    default: ""
 
 # Conditional syntax isn't supported, but there are workarounds:
 # https://github.com/actions/runner/issues/834#issuecomment-909921245
@@ -44,10 +47,10 @@ runs:
   using: "composite"
   steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Use Node.js ${{ inputs.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
         cache: ${{ (inputs.package-cache != 'false' && inputs.package-cache != '') && inputs.package-cache || '' }}
@@ -98,3 +101,10 @@ runs:
       run: ${{ inputs.integration-test-command }}
       env:
         DEBUG: 'testing:*'
+
+    - name: Archive screenshots
+      if: ${{ inputs.screenshots-path != '' }}
+      uses: actions/upload-artifact@v6
+      with:
+        path: ${{ inputs.screenshots-path }}
+        retention-days: 3
