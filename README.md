@@ -40,3 +40,8 @@ jobs:
 
   # ... other jobs
 ```
+
+## Changelog
+
+### 1.1.2 (2026-06-19) 
+- (@mcm1957) Dependencies have been updated
