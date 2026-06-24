@@ -104,7 +104,7 @@ runs:
 
     - name: Archive screenshots
       if: ${{ inputs.screenshots-path != '' }}
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         path: ${{ inputs.screenshots-path }}
         retention-days: 3
